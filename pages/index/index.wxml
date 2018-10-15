@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="container">
+<view class="page">
  <scroll-view class='page-body' scroll-y>
     <navigator wx:for="{{newsList}}" class="news">
       <view class='news-title'>
