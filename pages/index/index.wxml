@@ -1,0 +1,10 @@
+<!--index.wxml-->
+<view class="container">
+ <scroll-view class='news-list' scroll-y>
+    <navigator wx:for="{{newsList}}" class="news">
+      <view class='news-title'>
+        <text>{{item.title}}</text>
+      </view>
+    </navigator>
+ </scroll-view> 
+</view>
