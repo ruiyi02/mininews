@@ -1,66 +1,60 @@
 // pages/detail/detail.js
+//获取应用实例
+//use moment.js for date format
+const moment = require("../../utils/moment.min.js")
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+     news:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let newsId = options.id;
+    this.getNewsDetail(newsId)
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+  //function to get the news list based on news type
+  getNewsDetail(newsId) {
+    let that = this
+    wx.showLoading({
+      title: '加载新闻...'
+    })
+    //get news list for newsType from API
+    wx.request({
+      url: app.globalData.api_base_url + '/detail',
+      data: {
+        'id': newsId
+      },
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
 
-  },
+      success(res) {
+        let result = res.data.result
+        //format date using moment lib  
+        result.date = moment(result.date).format('h:mm')    
+    
+        that.setData(
+          {
+             news: result
+          }
+        )
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+        console.log(that.data.news)      
+      },
 
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+      complete(res) {
+        wx.hideLoading()
+      }
+    })
   }
 })
