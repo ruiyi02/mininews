@@ -1,10 +1,22 @@
 <!--index.wxml-->
-<view class="page">
- <scroll-view class='page-body' scroll-y>
-    <navigator wx:for="{{newsList}}" class="news">
-      <view class='news-title'>
-        <text>{{item.title}}</text>
-      </view>
-    </navigator>
- </scroll-view> 
+<view class="page"> 
+  <view class="page__bd">
+    <scroll-view scroll-y>    
+       <view class="weui-cells weui-cells_after-title">                  
+           <navigator url="" wx:for="{{newsList}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">             
+              <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                  <view class="weui-cell__bd weui-cell_primary">
+                      <view>{{item.title}}</view>
+                  </view>
+                  <view class="weui-media-box__info">
+                      <view class="weui-media-box__info__meta">{{item.source}}</view>
+                      <view class="weui-media-box__info__meta">{{item.date}}</view>                           </view>
+              </view>    
+               <view class="weui-cell__hd">
+                    <image src="{{item.firstImage}}" class="news-thumbnail"></image>
+                </view>
+            </navigator>          
+        </view>
+    </scroll-view> 
+  </view>
 </view>

@@ -1,1 +1,8 @@
 /**index.wxss**/
+
+.news-thumbnail{
+    margin-left: 10rpx;
+    vertical-align: middle;
+    width:180rpx; 
+    height: 160rpx;
+}
