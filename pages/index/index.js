@@ -1,4 +1,3 @@
-//index.js
 //use moment.js for date format
 const moment = require("../../utils/moment.min.js")
 //获取应用实例
@@ -29,7 +28,7 @@ Page({
     })
 
     wx.showLoading({
-      title: '加载新闻...'
+      title: '加载' + this.data.tabs[this.data.activeTabIndex]+'新闻...'
     })
 
     this.getNewsList(NEWS_TYPES[this.data.activeTabIndex], () => {
@@ -38,7 +37,7 @@ Page({
   },
 
   //swhich news type when tap the top navbar
-  tabTap: function (e) {
+  onTabTap: function (e) {
     if (this.data.activeTabIndex!= e.currentTarget.id){
       this.setData({
         sliderOffset: e.currentTarget.offsetLeft,
@@ -47,7 +46,7 @@ Page({
 
       //get the news for the current type
       wx.showLoading({
-        title: '加载新闻...'
+        title: '加载' + this.data.tabs[this.data.activeTabIndex] + '新闻...'
       })
       this.getNewsList(NEWS_TYPES[this.data.activeTabIndex], () => {
         wx.hideLoading()
@@ -55,14 +54,14 @@ Page({
     }  
   },
 
-  onPullDownRefresh() {   
+  onPullDownRefresh: function() {   
     this.getNewsList(NEWS_TYPES[this.data.activeTabIndex], () => {
       wx.stopPullDownRefresh()
     })
   },
-
+  
   //function to get the news list based on news type
-  getNewsList(newsType, callback){
+  getNewsList: function(newsType, callback){
     let that=this   
     //get news list for newsType from API
     wx.request({

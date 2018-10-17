@@ -1,7 +1,6 @@
-// pages/detail/detail.js
-//获取应用实例
 //use moment.js for date format
 const moment = require("../../utils/moment.min.js")
+//获取应用实例
 const app = getApp()
 
 Page({
@@ -22,10 +21,10 @@ Page({
   },
 
   //function to get the news list based on news type
-  getNewsDetail(newsId) {
+  getNewsDetail: function(newsId) {
     let that = this
     wx.showLoading({
-      title: '加载新闻...'
+      title: '加载新闻内容...'
     })
     //get news list for newsType from API
     wx.request({
@@ -49,7 +48,7 @@ Page({
           }
         )
 
-        console.log(that.data.news)      
+        //console.log(that.data.news)      
       },
 
       complete(res) {

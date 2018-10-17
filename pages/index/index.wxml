@@ -4,7 +4,7 @@
     <view class="weui-tab">
             <view class="weui-navbar">
                 <block wx:for="{{tabs}}" wx:key="*this">
-                    <view id="{{index}}" class="weui-navbar__item {{activeTabIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabTap">
+                    <view id="{{index}}" class="weui-navbar__item {{activeTabIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="onTabTap">
                         <view class="weui-navbar__title">{{item}}</view>
                     </view>
                 </block>
@@ -24,7 +24,7 @@
                                   <view class="weui-media-box__info__meta">{{newsList[0].date}}</view>                                                                </view>
                       </view>  
                     </navigator>           
-                    <view class="weui-cells weui-cells_after-title">                  
+                           
                        <navigator wx:for="{{newsList}}" wx:if="{{index>0}}" url="../detail/detail?id={{item.id}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">             
                           <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
                              <view class="weui-cell__bd weui-cell_primary">
@@ -38,7 +38,7 @@
                               <image src="{{item.firstImage}}" class="news-thumbnail"></image>
                           </view>
                       </navigator>          
-                    </view>
+             
                 </scroll-view> 
                 </view>               
             </view>
