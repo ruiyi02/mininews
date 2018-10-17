@@ -13,7 +13,6 @@ Page({
     activeTabIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
-    topNews:{},
     newsList:[],
   },
  
@@ -83,10 +82,8 @@ Page({
         });
 
         if (res.data.result.length>0){
-          let first = res.data.result.shift(); //remove the first news
           that.setData(
             {
-              topNews: first,   //use the first news as top one
               newsList: res.data.result 
             }
           )
