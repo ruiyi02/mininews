@@ -29,11 +29,17 @@ Page({
       }
     })
 
-    this.getNewsList(NEWS_TYPE[this.data.activeTabIndex])
+    wx.showLoading({
+      title: '加载新闻...'
+    })
+
+    this.getNewsList(NEWS_TYPE[this.data.activeTabIndex], () => {
+      wx.hideLoading()
+    })
   },
 
   //swhich news type when tap the top navbar
-  tabClick: function (e) {
+  tabTap: function (e) {
     if (this.data.activeTabIndex!= e.currentTarget.id){
       this.setData({
         sliderOffset: e.currentTarget.offsetLeft,
@@ -41,20 +47,24 @@ Page({
       });
 
       //get the news for the current type
-      this.getNewsList(NEWS_TYPE[this.data.activeTabIndex])
+      wx.showLoading({
+        title: '加载新闻...'
+      })
+      this.getNewsList(NEWS_TYPE[this.data.activeTabIndex], () => {
+        wx.hideLoading()
+      })
     }  
   },
 
-  onPullDownRefresh() {
-    this.getNewsList(NEWS_TYPE[this.data.activeTabIndex])
+  onPullDownRefresh() {   
+    this.getNewsList(NEWS_TYPE[this.data.activeTabIndex], () => {
+      wx.stopPullDownRefresh()
+    })
   },
 
   //function to get the news list based on news type
-  getNewsList(newsType){
-    let that=this
-    wx.showLoading({
-      title:'加载新闻...'
-    })
+  getNewsList(newsType, callback){
+    let that=this   
     //get news list for newsType from API
     wx.request({
       url: app.globalData.api_base_url + '/list',
@@ -83,8 +93,9 @@ Page({
         }
       
       },
-      complete(res) {
-        wx.hideLoading()
+
+      complete() {
+        callback && callback()
       }
     })
   }

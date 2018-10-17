@@ -4,7 +4,7 @@
     <view class="weui-tab">
             <view class="weui-navbar">
                 <block wx:for="{{tabs}}" wx:key="*this">
-                    <view id="{{index}}" class="weui-navbar__item {{activeTabIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+                    <view id="{{index}}" class="weui-navbar__item {{activeTabIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabTap">
                         <view class="weui-navbar__title">{{item}}</view>
                     </view>
                 </block>
