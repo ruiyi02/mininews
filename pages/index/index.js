@@ -3,7 +3,7 @@
 const moment = require("../../utils/moment.min.js")
 //获取应用实例
 const app = getApp()
-const NEWS_TYPE=["gn", "gj", "cj", "yl", "js", "ty", "other"]
+const NEWS_TYPES=["gn", "gj", "cj", "yl", "js", "ty", "other"]
 
 let sliderWidth = 26 // 需要设置slider的宽度，用于计算中间位置
 
@@ -32,7 +32,7 @@ Page({
       title: '加载新闻...'
     })
 
-    this.getNewsList(NEWS_TYPE[this.data.activeTabIndex], () => {
+    this.getNewsList(NEWS_TYPES[this.data.activeTabIndex], () => {
       wx.hideLoading()
     })
   },
@@ -49,14 +49,14 @@ Page({
       wx.showLoading({
         title: '加载新闻...'
       })
-      this.getNewsList(NEWS_TYPE[this.data.activeTabIndex], () => {
+      this.getNewsList(NEWS_TYPES[this.data.activeTabIndex], () => {
         wx.hideLoading()
       })
     }  
   },
 
   onPullDownRefresh() {   
-    this.getNewsList(NEWS_TYPE[this.data.activeTabIndex], () => {
+    this.getNewsList(NEWS_TYPES[this.data.activeTabIndex], () => {
       wx.stopPullDownRefresh()
     })
   },

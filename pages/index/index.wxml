@@ -11,7 +11,7 @@
                 <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); width:48rpx;"></view>
             </view>
             <view class="weui-tab__panel">
-                <view class="weui-tab__content">
+                <view class="weui-tab__content">                 
                   <scroll-view scroll-y>   
                    <navigator url="../detail/detail?id={{newsList[0].id}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">          
                       <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
