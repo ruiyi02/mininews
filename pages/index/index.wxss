@@ -7,3 +7,8 @@
     height: 160rpx;
 }
 
+.error-message{
+  margin-top: 100rpx;
+  text-align: center
+}
+

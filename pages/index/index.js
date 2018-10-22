@@ -1,5 +1,4 @@
-//use moment.js for date format
-const moment = require("../../utils/moment.min.js")
+var util = require('../../utils/util.js');  
 //获取应用实例
 const app = getApp()
 const NEWS_TYPES=["gn", "gj", "cj", "yl", "js", "ty", "other"]
@@ -13,6 +12,7 @@ Page({
     sliderOffset: 0,
     sliderLeft: 0,
     newsList:[],
+    errorMessage:''
   },
  
   onLoad: function () {
@@ -63,6 +63,13 @@ Page({
   //function to get the news list based on news type
   getNewsList: function(newsType, callback){
     let that=this   
+    //uset error message
+    that.setData(
+      {    
+        errorMessage: ''
+      }
+    )
+
     //get news list for newsType from API
     wx.request({
       url: app.globalData.api_base_url + '/list',
@@ -77,13 +84,21 @@ Page({
         let result = res.data.result
         //format date using moment lib
         result.forEach(function (item) {
-          item.date = moment(item.date).format('h:mm')
+          item.date = util.formatTimeNew(new Date(item.date))
         });
 
         if (res.data.result.length>0){
-          that.setData(
+           that.setData(
             {
-              newsList: res.data.result 
+              newsList: res.data.result,
+              errorMessage: ''
+            }
+          )
+        }else{
+           that.setData(
+            {
+              newsList: [],
+              errorMessage: '暂时没有' + that.data.tabs[that.data.activeTabIndex] + '新闻，请稍后刷新。'
             }
           )
         }
@@ -91,7 +106,7 @@ Page({
       },
 
       complete() {
-        callback && callback()
+         typeof callback === 'function' && callback()
       }
     })
   }

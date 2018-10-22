@@ -12,20 +12,19 @@
             </view>
             <view class="weui-tab__panel">
                 <view class="weui-tab__content">                 
-                  <scroll-view scroll-y>   
-                   <navigator url="../detail/detail?id={{newsList[0].id}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">          
-                      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-                              <image mode="scaleToFill" style="width: 690rpx;" src="{{newsList[0].firstImage}}"></image>
+                  <view wx:if="{{newsList.length>0}}">   
+                    <navigator url="../detail/detail?id={{newsList[0].id}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">          
+                       <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                              <image wx:if="{{newsList[0].firstImage}}" mode="aspectFit" style="width: 690rpx;" src="{{newsList[0].firstImage}}"></image>
                               <view class="weui-cell__bd weui-cell_primary">
                                 <view>{{newsList[0].title}}</view>
                               </view>
                               <view class="weui-media-box__info">
                                   <view class="weui-media-box__info__meta">{{newsList[0].source}}</view>
-                                  <view class="weui-media-box__info__meta">{{newsList[0].date}}</view>                                                                </view>
-                      </view>  
-                    </navigator>           
-                           
-                       <navigator wx:for="{{newsList}}" wx:if="{{index>0}}" url="../detail/detail?id={{item.id}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">             
+                                  <view class="weui-media-box__info__meta">{{newsList[0].date}}</view>                                                       </view>
+                       </view>  
+                    </navigator>  
+                    <navigator wx:for="{{newsList}}" wx:if="{{index>0}}" url="../detail/detail?id={{item.id}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">             
                           <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
                              <view class="weui-cell__bd weui-cell_primary">
                                <view>{{item.title}}</view>
@@ -35,11 +34,15 @@
                                 <view class="weui-media-box__info__meta">{{item.date}}</view>                                                                    </view>
                           </view>    
                           <view class="weui-cell__hd">                
-                              <image src="{{item.firstImage}}" class="news-thumbnail"></image>
+                              <image mode="aspectFill" src="{{item.firstImage}}" class="news-thumbnail"></image>
                           </view>
-                      </navigator>          
-             
-                </scroll-view> 
+                      </navigator>      
+                  </view> 
+                  <view wx:if="errorMessage!=''">
+                      <view class="error-message">
+                        <text>{{errorMessage}}</text>           
+                      </view>                       
+                  </view>
                 </view>               
             </view>
     </view>    

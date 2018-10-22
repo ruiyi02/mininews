@@ -1,25 +1,22 @@
 <!--pages/detail/detail.wxml-->
 <view class="page">   
     <view class="page__bd">
-
         <view class="weui-article">  
             <view class="weui-article__section">
               <view class="weui-article__h1">{{news.title}}</view>
               <view class="weui-media-box__info">
-                          <view class="weui-media-box__info__meta">{{news.source}}</view>
-                          <view class="weui-media-box__info__meta">{{news.date}}</view>
-                          <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">阅读 {{news.readCount}}</view>
+                  <view class="weui-media-box__info__meta">{{news.source}}</view>
+                  <view class="weui-media-box__info__meta">{{news.date}}</view>
+                  <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">阅读 {{news.readCount}}</view>
               </view>
             </view>
-            <view class="weui-article__section">            
-                <view class="weui-article__section">  
-                    <view wx:if="{{news.firstImage!=''}}"class="weui-article__p">
-                      <image class="weui-article__img" src="{{news.firstImage}}" mode="aspectFit" style="width: 680rpx" />
-                    </view>            
-                    <view wx:for="{{news.content}}" class="weui-article__p">
-                        {{item.text}}
-                    </view>                    
-                </view>               
+            <view wx:for="{{news.content}}" class="weui-article__section">            
+                  <view wx:if="{{item.type=='image'}}" class="weui-article__p" >
+                      <image class="weui-article__img" src="{{item.src}}" mode="aspectFit" style="width: 680rpx" />
+                  </view>                    
+                  <view wx:else class="{{item.type=='strong' ? 'weui-article__title':'weui-article__p'}}">
+                       {{item.text}}
+                  </view>  
             </view>
         </view>
     </view>

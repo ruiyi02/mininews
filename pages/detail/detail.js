@@ -1,5 +1,4 @@
-//use moment.js for date format
-const moment = require("../../utils/moment.min.js")
+var util = require('../../utils/util.js');  
 //获取应用实例
 const app = getApp()
 
@@ -40,7 +39,7 @@ Page({
       success(res) {
         let result = res.data.result
         //format date using moment lib  
-        result.date = moment(result.date).format('h:mm')    
+        result.date = util.formatTimeNew(new Date(result.date))    
     
         that.setData(
           {
