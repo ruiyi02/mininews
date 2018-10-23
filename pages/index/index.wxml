@@ -34,7 +34,7 @@
                                 <view class="weui-media-box__info__meta">{{item.date}}</view>                                                                    </view>
                           </view>    
                           <view class="weui-cell__hd">                
-                              <image mode="aspectFill" src="{{item.firstImage}}" class="news-thumbnail"></image>
+                              <image mode="aspectFill" src="{{item.firstImage!='' ? item.firstImage : '/images/icons8-news-64.png'}}" class="news-thumbnail"></image>
                           </view>
                       </navigator>      
                   </view> 
