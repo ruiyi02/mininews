@@ -20,18 +20,18 @@
                                 <view>{{newsList[0].title}}</view>
                               </view>
                               <view class="weui-media-box__info">
-                                  <view class="weui-media-box__info__meta">{{newsList[0].source}}</view>
+                                  <view class="weui-media-box__info__meta">{{newsList[0].source!=''? newsList[0].source :'未知来源' }}</view>
                                   <view class="weui-media-box__info__meta">{{newsList[0].date}}</view>                                                       </view>
                        </view>  
                     </navigator>  
-                    <navigator wx:for="{{newsList}}" wx:if="{{index>0}}" url="../detail/detail?id={{item.id}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">             
+                    <navigator wx:for="{{newsList}}" wx:key="*this" wx:if="{{index>0}}" url="../detail/detail?id={{item.id}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">             
                           <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
                              <view class="weui-cell__bd weui-cell_primary">
                                <view>{{item.title}}</view>
                              </view>
                              <view class="weui-media-box__info">
-                                <view class="weui-media-box__info__meta">{{item.source}}</view>
-                                <view class="weui-media-box__info__meta">{{item.date}}</view>                                                                    </view>
+                                <view class="weui-media-box__info__meta">{{item.source!=''? item.source :'未知来源' }}</view>
+                                <view class="weui-media-box__info__meta">{{item.date}}</view>                                                                </view>
                           </view>    
                           <view class="weui-cell__hd">                
                               <image mode="aspectFill" src="{{item.firstImage!='' ? item.firstImage : '/images/icons8-news-64.png'}}" class="news-thumbnail"></image>

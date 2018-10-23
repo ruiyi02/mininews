@@ -5,12 +5,12 @@
             <view class="weui-article__section">
               <view class="weui-article__h1">{{news.title}}</view>
               <view class="weui-media-box__info">
-                  <view class="weui-media-box__info__meta">{{news.source}}</view>
+                  <view class="weui-media-box__info__meta">{{news.source!=''? news.source :'未知来源'}}</view>
                   <view class="weui-media-box__info__meta">{{news.date}}</view>
                   <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">阅读 {{news.readCount}}</view>
               </view>
             </view>
-            <view wx:for="{{news.content}}" class="weui-article__section">            
+            <view wx:for="{{news.content}}" wx:key="*this" class="weui-article__section">            
                   <view wx:if="{{item.type=='image'}}" class="weui-article__p" >
                       <image class="weui-article__img" src="{{item.src}}" mode="aspectFit" style="width: 680rpx" />
                   </view>                    
